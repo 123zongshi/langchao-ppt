@@ -5,21 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>浪潮产品讲解</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/theme/white.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/theme/black.min.css">
 <style>
-.reveal { font-family: "Microsoft YaHei", "SimHei", Arial, sans-serif; color: #222; }
-.reveal h1, .reveal h2 { color: #0066cc; font-weight: bold; }
-.reveal h2 { font-size: 1.5em; border-bottom: 2px solid #0066cc; padding-bottom: 0.3em; margin-bottom: 0.5em; }
-.reveal img { max-width: 100%; max-height: 58vh; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin: 0.3em; }
-.reveal .img-row { display: flex; gap: 0.4em; justify-content: center; align-items: center; flex-wrap: wrap; }
-.reveal .img-row img { max-height: 60vh; }
-.reveal table { border-collapse: collapse; width: 100%; font-size: 0.75em; margin-top: 0.5em; }
-.reveal td, .reveal th { border: 1px solid #aaa; padding: 4px 8px; text-align: left; }
-.reveal th { background: #f5f5f5; }
-.reveal p { margin: 0.3em 0; font-size: 0.9em; text-align: left; }
+.reveal { font-family: "Microsoft YaHei", "SimHei", Arial, sans-serif; }
+.reveal { background: #1a1a2e; }
+.reveal h1, .reveal h2, .reveal h3 { color: #00d4ff; font-weight: bold; letter-spacing: -0.02em; }
+.reveal h1 { font-size: 2.8em; text-shadow: 0 0 30px rgba(0,212,255,0.5); }
+.reveal h2 { font-size: 1.8em; color: #00d4ff; border-bottom: 2px solid #00d4ff; padding-bottom: 0.3em; margin-bottom: 0.8em; }
+.reveal h3 { font-size: 1.3em; color: #e0e0e0; }
+.reveal p, .reveal li { color: #e0e0e0; font-size: 0.95em; line-height: 1.6; }
+.reveal .toc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2em; text-align: left; margin-top: 1em; }
+.reveal .toc-item { background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3); border-radius: 10px; padding: 1em 1.2em; cursor: pointer; transition: all 0.3s; }
+.reveal .toc-item:hover { background: rgba(0,212,255,0.2); border-color: #00d4ff; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,212,255,0.3); }
+.reveal .toc-item h3 { color: #00d4ff; margin: 0; font-size: 1.1em; }
+.reveal img { max-width: 100%; max-height: 55vh; object-fit: contain; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+.reveal .img-row { display: flex; gap: 1em; justify-content: center; flex-wrap: wrap; }
+.reveal .img-row img { max-height: 55vh; flex: 1 1 auto; }
+.reveal .spec-table { width: 100%; border-collapse: collapse; margin: 0.8em 0; font-size: 0.8em; }
+.reveal .spec-table th { background: rgba(0,212,255,0.2); color: #00d4ff; padding: 8px 12px; text-align: left; border: 1px solid rgba(0,212,255,0.3); }
+.reveal .spec-table td { color: #e0e0e0; padding: 6px 12px; border: 1px solid rgba(255,255,255,0.1); }
+.reveal .spec-table tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+.reveal .slide-meta { color: #888; font-size: 0.75em; margin-top: 0.5em; }
+.reveal .highlight { color: #00d4ff; font-weight: bold; }
+.reveal .section-num { color: rgba(0,212,255,0.5); font-size: 0.6em; display: block; margin-bottom: 0.3em; }
 .reveal section { text-align: center; }
-.reveal .title-slide h1 { font-size: 2.5em; color: #0066cc; margin-bottom: 0.2em; }
-.reveal .title-slide p { color: #666; font-size: 1.1em; }
+.reveal .title-slide h1 { font-size: 3em; color: #00d4ff; text-shadow: 0 0 40px rgba(0,212,255,0.6); }
+.reveal .title-slide p { color: #aaa; font-size: 1.2em; margin-top: 0.5em; }
+.reveal .footer-hint { position: fixed; bottom: 20px; right: 30px; color: rgba(255,255,255,0.3); font-size: 0.6em; }
+
+/* Fragment animations */
+.reveal .slides section.present .toc-item { animation: fadeInUp 0.5s ease forwards; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.reveal .slides section.present h2 { animation: fadeIn 0.6s ease; }
+.reveal .slides section.present img { animation: fadeInScale 0.8s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInScale { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 </style>
 </head>
 <body>
@@ -29,185 +49,122 @@
 <section>
 <div class="title-slide">
 <h1>浪潮产品讲解</h1>
-<p>产品介绍</p>
+<p>产品目录</p>
 </div>
 </section>
 
 <section>
+<h2>目录</h2>
+<div class="toc-grid">
+
+<div class="toc-item" onclick="Reveal.slide(2)">
+<h3>miniPC</h3><p style="color:#aaa;font-size:0.8em;margin:0;">小型台式机</p></div>
+<div class="toc-item" onclick="Reveal.slide(3)">
+<h3>一体机</h3><p style="color:#aaa;font-size:0.8em;margin:0;">商用一体机电脑</p></div>
+<div class="toc-item" onclick="Reveal.slide(4)">
+<h3>显示器</h3><p style="color:#aaa;font-size:0.8em;margin:0;">全系列显示器</p></div>
+<div class="toc-item" onclick="Reveal.slide(5)">
+<h3>F3</h3><p style="color:#aaa;font-size:0.8em;margin:0;">miniPC产品</p></div>
+<div class="toc-item" onclick="Reveal.slide(6)">
+<h3>A3</h3><p style="color:#aaa;font-size:0.8em;margin:0;">显示器产品</p></div>
+<div class="toc-item" onclick="Reveal.slide(7)">
+<h3>C01</h3><p style="color:#aaa;font-size:0.8em;margin:0;">显示器产品</p></div>
+<div class="toc-item" onclick="Reveal.slide(8)">
+<h3>AI鼠标</h3><p style="color:#aaa;font-size:0.8em;margin:0;">智能外设</p></div>
+<div class="toc-item" onclick="Reveal.slide(9)">
+<h3>无线键鼠套装</h3><p style="color:#aaa;font-size:0.8em;margin:0;">键鼠套装</p></div>
+<div class="toc-item" onclick="Reveal.slide(10)">
+<h3>有线键鼠套装</h3><p style="color:#aaa;font-size:0.8em;margin:0;">键鼠套装</p></div>
+<div class="toc-item" onclick="Reveal.slide(11)">
+<h3>机械键盘</h3><p style="color:#aaa;font-size:0.8em;margin:0;">机械轴键盘</p></div>
+</div></section>
+<section>
 <h2>miniPC</h2>
-<img src="浪潮_images/media/image3.png" alt="产品图片">
+<img src="media/image1.png" alt="miniPC">
 </section>
 
 <section>
 <h2>一体机</h2>
-<img src="浪潮_images/media/image4.png" alt="产品图片">
+<table class="spec-table"><tr><th>配置项</th><th>参数</th></tr>
+<tr><td style="color:#00d4ff;font-weight:bold;">处理器</td><td style="text-align:left;">I7-13620H 十核十六线程 2.4GHz / I5-14400 十核十六线程 2.5GHz</td></tr>
+<tr><td style="color:#00d4ff;font-weight:bold;">内存</td><td style="text-align:left;">16G（最大32G DDR4 3200）</td></tr>
+<tr><td style="color:#00d4ff;font-weight:bold;">硬盘</td><td style="text-align:left;">512G（双硬盘位：M.2 + 2.5寸）</td></tr>
+<tr><td style="color:#00d4ff;font-weight:bold;">接口</td><td style="text-align:left;">USB3.0×4 / USB2.0×2 / HDMI / COM / TYPE-C / RJ45</td></tr>
+</table>
+<img src="media/image2.png" alt="一体机">
 </section>
 
 <section>
 <h2>显示器</h2>
-<img src="浪潮_images/media/image5.png" alt="产品图片">
+<img src="media/image3.png" alt="显示器">
 </section>
 
 <section>
 <h2>配件</h2>
-<img src="浪潮_images/media/image6.png" alt="产品图片">
+<img src="media/image4.png" alt="配件">
 </section>
 
 <section>
 <h2>F3</h2>
 <div class="img-row">
-<img src="浪潮_images/media/image7.png" alt="产品图片">
-<img src="浪潮_images/media/image8.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>F3</h2>
-<div class="img-row">
-<img src="浪潮_images/media/image9.png" alt="产品图片">
-<img src="浪潮_images/media/image10.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>F3</h2>
-<div class="img-row">
-<img src="浪潮_images/media/image11.png" alt="产品图片">
-<img src="浪潮_images/media/image12.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<img src="浪潮_images/media/image13.png" alt="产品图片">
-</section>
-
-<section>
-<h2>A3</h2>
-<div class="img-row">
-<img src="浪潮_images/media/image14.png" alt="产品图片">
-<img src="浪潮_images/media/image15.png" alt="产品图片">
+<img src="media/image5.png" alt="F3">
+<img src="media/image6.png" alt="F3">
 </div>
 </section>
 
 <section>
 <h2>A3</h2>
 <div class="img-row">
-<img src="浪潮_images/media/image16.png" alt="产品图片">
-<img src="浪潮_images/media/image17.png" alt="产品图片">
+<img src="media/image7.png" alt="A3">
+<img src="media/image8.png" alt="A3">
 </div>
 </section>
 
 <section>
 <h2>C01</h2>
 <div class="img-row">
-<img src="浪潮_images/media/image18.png" alt="产品图片">
-<img src="浪潮_images/media/image19.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>C01</h2>
-<div class="img-row">
-<img src="浪潮_images/media/image20.png" alt="产品图片">
-<img src="浪潮_images/media/image21.png" alt="产品图片">
+<img src="media/image9.png" alt="C01">
+<img src="media/image10.png" alt="C01">
 </div>
 </section>
 
 <section>
 <h2>AI鼠标</h2>
 <div class="img-row">
-<img src="浪潮_images/media/image22.png" alt="产品图片">
-<img src="浪潮_images/media/image23.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>AI鼠标</h2>
-<div class="img-row">
-<img src="浪潮_images/media/image24.png" alt="产品图片">
-<img src="浪潮_images/media/image25.png" alt="产品图片">
-<img src="浪潮_images/media/image26.png" alt="产品图片">
+<img src="media/image11.png" alt="AI鼠标">
+<img src="media/image12.png" alt="AI鼠标">
 </div>
 </section>
 
 <section>
 <h2>无线键鼠套装</h2>
 <div class="img-row">
-<img src="浪潮_images/media/image27.png" alt="产品图片">
-<img src="浪潮_images/media/image28.png" alt="产品图片">
-<img src="浪潮_images/media/image29.png" alt="产品图片">
-<img src="浪潮_images/media/image30.png" alt="产品图片">
+<img src="media/image13.png" alt="无线键鼠套装">
+<img src="media/image14.png" alt="无线键鼠套装">
+<img src="media/image15.png" alt="无线键鼠套装">
 </div>
 </section>
 
 <section>
 <h2>有线键鼠套装</h2>
 <div class="img-row">
-<img src="浪潮_images/media/image31.png" alt="产品图片">
-<img src="浪潮_images/media/image32.png" alt="产品图片">
-<img src="浪潮_images/media/image33.png" alt="产品图片">
+<img src="media/image16.png" alt="有线键鼠套装">
+<img src="media/image17.png" alt="有线键鼠套装">
+<img src="media/image18.png" alt="有线键鼠套装">
 </div>
 </section>
 
 <section>
 <h2>机械键盘</h2>
 <div class="img-row">
-<img src="浪潮_images/media/image34.png" alt="产品图片">
-<img src="浪潮_images/media/image35.png" alt="产品图片">
-<img src="浪潮_images/media/image36.png" alt="产品图片">
+<img src="media/image19.png" alt="机械键盘">
+<img src="media/image20.png" alt="机械键盘">
+<img src="media/image21.png" alt="机械键盘">
 </div>
 </section>
 
-<section>
-<h2>一体机</h2>
-<div class="img-row">
-<img src="浪潮_images/media/image37.png" alt="产品图片">
-<img src="浪潮_images/media/image38.png" alt="产品图片">
 </div>
-</section>
-
-<section>
-<h2>一体机</h2>
-<div class="img-row">
-<img src="浪潮_images/media/image39.png" alt="产品图片">
-<img src="浪潮_images/media/image40.png" alt="产品图片">
-<img src="浪潮_images/media/image41.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>一体机</h2>
-<div class="img-row">
-<img src="浪潮_images/media/image42.png" alt="产品图片">
-<img src="浪潮_images/media/image43.png" alt="产品图片">
-<img src="浪潮_images/media/image44.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>一体机</h2>
-<div class="img-row">
-<img src="浪潮_images/media/image45.png" alt="产品图片">
-<img src="浪潮_images/media/image46.png" alt="产品图片">
-<img src="浪潮_images/media/image47.png" alt="产品图片">
-<img src="浪潮_images/media/image48.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>显示器</h2>
-<div class="img-row">
-<img src="浪潮_images/media/image49.png" alt="产品图片">
-<img src="浪潮_images/media/image50.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<p style="color:#999;">（图片见原PPT）</p>
-</section>
-
-
-</div>
+<div class="footer-hint">浪潮产品讲解 · reveal.js</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.min.js"></script>
 <script>
@@ -216,9 +173,16 @@ Reveal.initialize({
     slideNumber: 'c/t',
     width: 1280,
     height: 720,
-    margin: 0.04,
-    transition: 'slide',
-    backgroundTransition: 'fade'
+    margin: 0.06,
+    transition: 'fade',
+    transitionSpeed: 'slow',
+    backgroundTransition: 'fade',
+    controls: true,
+    progress: true,
+    center: false,
+    controlsTutorial: true,
+    overview: true,
+    plugins: []
 });
 </script>
 </body>
