@@ -8,38 +8,33 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/theme/black.min.css">
 <style>
 .reveal { font-family: "Microsoft YaHei", "SimHei", Arial, sans-serif; }
-.reveal { background: #1a1a2e; }
-.reveal h1, .reveal h2, .reveal h3 { color: #00d4ff; font-weight: bold; letter-spacing: -0.02em; }
-.reveal h1 { font-size: 2.8em; text-shadow: 0 0 30px rgba(0,212,255,0.5); }
-.reveal h2 { font-size: 1.8em; color: #00d4ff; border-bottom: 2px solid #00d4ff; padding-bottom: 0.3em; margin-bottom: 0.8em; }
-.reveal h3 { font-size: 1.3em; color: #e0e0e0; }
-.reveal p, .reveal li { color: #e0e0e0; font-size: 0.95em; line-height: 1.6; }
-.reveal .toc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2em; text-align: left; margin-top: 1em; }
-.reveal .toc-item { background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3); border-radius: 10px; padding: 1em 1.2em; cursor: pointer; transition: all 0.3s; }
-.reveal .toc-item:hover { background: rgba(0,212,255,0.2); border-color: #00d4ff; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,212,255,0.3); }
-.reveal .toc-item h3 { color: #00d4ff; margin: 0; font-size: 1.1em; }
-.reveal img { max-width: 100%; max-height: 55vh; object-fit: contain; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
-.reveal .img-row { display: flex; gap: 1em; justify-content: center; flex-wrap: wrap; }
-.reveal .img-row img { max-height: 55vh; flex: 1 1 auto; }
-.reveal .spec-table { width: 100%; border-collapse: collapse; margin: 0.8em 0; font-size: 0.8em; }
-.reveal .spec-table th { background: rgba(0,212,255,0.2); color: #00d4ff; padding: 8px 12px; text-align: left; border: 1px solid rgba(0,212,255,0.3); }
-.reveal .spec-table td { color: #e0e0e0; padding: 6px 12px; border: 1px solid rgba(255,255,255,0.1); }
-.reveal .spec-table tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
-.reveal .slide-meta { color: #888; font-size: 0.75em; margin-top: 0.5em; }
-.reveal .highlight { color: #00d4ff; font-weight: bold; }
-.reveal .section-num { color: rgba(0,212,255,0.5); font-size: 0.6em; display: block; margin-bottom: 0.3em; }
-.reveal section { text-align: center; }
-.reveal .title-slide h1 { font-size: 3em; color: #00d4ff; text-shadow: 0 0 40px rgba(0,212,255,0.6); }
-.reveal .title-slide p { color: #aaa; font-size: 1.2em; margin-top: 0.5em; }
-.reveal .footer-hint { position: fixed; bottom: 20px; right: 30px; color: rgba(255,255,255,0.3); font-size: 0.6em; }
-
-/* Fragment animations */
-.reveal .slides section.present .toc-item { animation: fadeInUp 0.5s ease forwards; }
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-.reveal .slides section.present h2 { animation: fadeIn 0.6s ease; }
-.reveal .slides section.present img { animation: fadeInScale 0.8s ease; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes fadeInScale { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+.reveal { background: #0d1117; }
+.reveal h1, .reveal h2, .reveal h3 { color: #58a6ff; font-weight: bold; letter-spacing: -0.02em; }
+.reveal h1 { font-size: 2.8em; text-shadow: 0 0 30px rgba(88,166,255,0.4); }
+.reveal h2 { font-size: 1.7em; color: #58a6ff; border-bottom: 2px solid rgba(88,166,255,0.5); padding-bottom: 0.3em; margin-bottom: 0.7em; }
+.reveal h3 { font-size: 1.1em; color: #c9d1d9; }
+.reveal p, .reveal li { color: #c9d1d9; font-size: 0.9em; line-height: 1.7; }
+.reveal .toc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8em; text-align: left; margin-top: 0.8em; }
+.reveal .toc-item { background: rgba(88,166,255,0.08); border: 1px solid rgba(88,166,255,0.2); border-radius: 10px; padding: 0.8em 1em; cursor: pointer; transition: all 0.3s; }
+.reveal .toc-item:hover { background: rgba(88,166,255,0.18); border-color: #58a6ff; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(88,166,255,0.2); }
+.reveal .toc-item h3 { color: #58a6ff; margin: 0 0 0.2em 0; font-size: 0.95em; }
+.reveal .toc-item p { color: #8b949e; font-size: 0.7em; margin: 0; }
+.reveal img { max-width: 100%; max-height: 50vh; object-fit: contain; border-radius: 8px; box-shadow: 0 8px 40px rgba(0,0,0,0.6); border: 1px solid rgba(88,166,255,0.1); }
+.reveal .img-row { display: flex; gap: 0.6em; justify-content: center; flex-wrap: wrap; align-items: center; }
+.reveal .img-row img { max-height: 50vh; flex: 1 1 40%; }
+.reveal .spec-table { width: 100%; border-collapse: collapse; margin: 0.5em 0; font-size: 0.75em; }
+.reveal .spec-table th { background: rgba(88,166,255,0.15); color: #58a6ff; padding: 7px 12px; text-align: left; border: 1px solid rgba(88,166,255,0.25); font-weight: bold; }
+.reveal .spec-table td { color: #c9d1d9; padding: 5px 12px; border: 1px solid rgba(255,255,255,0.07); }
+.reveal .spec-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+.reveal .title-slide h1 { font-size: 3em; color: #58a6ff; text-shadow: 0 0 50px rgba(88,166,255,0.5); }
+.reveal .title-slide p { color: #8b949e; font-size: 1.1em; margin-top: 0.5em; }
+.reveal .footer-hint { position: fixed; bottom: 15px; right: 20px; color: rgba(255,255,255,0.15); font-size: 0.5em; pointer-events: none; }
+.reveal .present .frag-item { animation: slideUp 0.5s ease forwards; }
+@keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.reveal .present .frag-item:nth-child(1) { animation-delay: 0.1s; }
+.reveal .present .frag-item:nth-child(2) { animation-delay: 0.2s; }
+.reveal .present .frag-item:nth-child(3) { animation-delay: 0.3s; }
+.reveal .present .frag-item:nth-child(4) { animation-delay: 0.4s; }
 </style>
 </head>
 <body>
@@ -49,7 +44,7 @@
 <section>
 <div class="title-slide">
 <h1>浪潮产品讲解</h1>
-<p>产品目录</p>
+<p>全系列产品介绍 · 2024</p>
 </div>
 </section>
 
@@ -58,112 +53,209 @@
 <div class="toc-grid">
 
 <div class="toc-item" onclick="Reveal.slide(2)">
-<h3>miniPC</h3><p style="color:#aaa;font-size:0.8em;margin:0;">小型台式机</p></div>
+<h3>miniPC</h3><p>小型台式机</p></div>
 <div class="toc-item" onclick="Reveal.slide(3)">
-<h3>一体机</h3><p style="color:#aaa;font-size:0.8em;margin:0;">商用一体机电脑</p></div>
+<h3>一体机</h3><p>商用一体机</p></div>
 <div class="toc-item" onclick="Reveal.slide(4)">
-<h3>显示器</h3><p style="color:#aaa;font-size:0.8em;margin:0;">全系列显示器</p></div>
+<h3>显示器</h3><p>全系列显示器</p></div>
 <div class="toc-item" onclick="Reveal.slide(5)">
-<h3>F3</h3><p style="color:#aaa;font-size:0.8em;margin:0;">miniPC产品</p></div>
+<h3>配件</h3><p>键鼠外设</p></div>
 <div class="toc-item" onclick="Reveal.slide(6)">
-<h3>A3</h3><p style="color:#aaa;font-size:0.8em;margin:0;">显示器产品</p></div>
+<h3>F3</h3><p>miniPC产品</p></div>
 <div class="toc-item" onclick="Reveal.slide(7)">
-<h3>C01</h3><p style="color:#aaa;font-size:0.8em;margin:0;">显示器产品</p></div>
+<h3>A3</h3><p>显示器产品</p></div>
 <div class="toc-item" onclick="Reveal.slide(8)">
-<h3>AI鼠标</h3><p style="color:#aaa;font-size:0.8em;margin:0;">智能外设</p></div>
+<h3>C01</h3><p>显示器产品</p></div>
 <div class="toc-item" onclick="Reveal.slide(9)">
-<h3>无线键鼠套装</h3><p style="color:#aaa;font-size:0.8em;margin:0;">键鼠套装</p></div>
+<h3>AI鼠标</h3><p>智能外设</p></div>
 <div class="toc-item" onclick="Reveal.slide(10)">
-<h3>有线键鼠套装</h3><p style="color:#aaa;font-size:0.8em;margin:0;">键鼠套装</p></div>
+<h3>无线键鼠套装</h3><p>无线键鼠</p></div>
 <div class="toc-item" onclick="Reveal.slide(11)">
-<h3>机械键盘</h3><p style="color:#aaa;font-size:0.8em;margin:0;">机械轴键盘</p></div>
+<h3>有线键鼠套装</h3><p>有线键鼠</p></div>
+<div class="toc-item" onclick="Reveal.slide(12)">
+<h3>机械键盘</h3><p>机械轴键盘</p></div>
 </div></section>
 <section>
 <h2>miniPC</h2>
-<img src="media/image1.png" alt="miniPC">
+<img src="media/image3.png" alt="产品图片">
 </section>
 
 <section>
 <h2>一体机</h2>
-<table class="spec-table"><tr><th>配置项</th><th>参数</th></tr>
-<tr><td style="color:#00d4ff;font-weight:bold;">处理器</td><td style="text-align:left;">I7-13620H 十核十六线程 2.4GHz / I5-14400 十核十六线程 2.5GHz</td></tr>
-<tr><td style="color:#00d4ff;font-weight:bold;">内存</td><td style="text-align:left;">16G（最大32G DDR4 3200）</td></tr>
-<tr><td style="color:#00d4ff;font-weight:bold;">硬盘</td><td style="text-align:left;">512G（双硬盘位：M.2 + 2.5寸）</td></tr>
-<tr><td style="color:#00d4ff;font-weight:bold;">接口</td><td style="text-align:left;">USB3.0×4 / USB2.0×2 / HDMI / COM / TYPE-C / RJ45</td></tr>
-</table>
-<img src="media/image2.png" alt="一体机">
+<img src="media/image4.png" alt="产品图片">
 </section>
 
 <section>
 <h2>显示器</h2>
-<img src="media/image3.png" alt="显示器">
+<img src="media/image5.png" alt="产品图片">
 </section>
 
 <section>
 <h2>配件</h2>
-<img src="media/image4.png" alt="配件">
+<img src="media/image6.png" alt="产品图片">
 </section>
 
 <section>
 <h2>F3</h2>
 <div class="img-row">
-<img src="media/image5.png" alt="F3">
-<img src="media/image6.png" alt="F3">
+<img src="media/image8.png" alt="产品图片">
+<img src="media/image7.png" alt="产品图片">
+</div>
+</section>
+
+<section>
+<h2>F3</h2>
+<div class="img-row">
+<img src="media/image10.png" alt="产品图片">
+<img src="media/image9.png" alt="产品图片">
+</div>
+</section>
+
+<section>
+<h2>F3</h2>
+<div class="img-row">
+<img src="media/image12.png" alt="产品图片">
+<img src="media/image11.png" alt="产品图片">
+</div>
+</section>
+
+<section>
+<img src="media/image13.png" alt="产品图片">
+</section>
+
+<section>
+<h2>A3</h2>
+<div class="img-row">
+<img src="media/image15.png" alt="产品图片">
+<img src="media/image14.png" alt="产品图片">
 </div>
 </section>
 
 <section>
 <h2>A3</h2>
 <div class="img-row">
-<img src="media/image7.png" alt="A3">
-<img src="media/image8.png" alt="A3">
+<img src="media/image17.png" alt="产品图片">
+<img src="media/image16.png" alt="产品图片">
 </div>
 </section>
 
 <section>
 <h2>C01</h2>
 <div class="img-row">
-<img src="media/image9.png" alt="C01">
-<img src="media/image10.png" alt="C01">
+<img src="media/image19.png" alt="产品图片">
+<img src="media/image18.png" alt="产品图片">
+</div>
+</section>
+
+<section>
+<h2>C01</h2>
+<div class="img-row">
+<img src="media/image21.png" alt="产品图片">
+<img src="media/image20.png" alt="产品图片">
 </div>
 </section>
 
 <section>
 <h2>AI鼠标</h2>
 <div class="img-row">
-<img src="media/image11.png" alt="AI鼠标">
-<img src="media/image12.png" alt="AI鼠标">
+<img src="media/image23.png" alt="产品图片">
+<img src="media/image22.png" alt="产品图片">
+</div>
+</section>
+
+<section>
+<h2>AI鼠标</h2>
+<div class="img-row">
+<img src="media/image26.png" alt="产品图片">
+<img src="media/image25.png" alt="产品图片">
+<img src="media/image24.png" alt="产品图片">
 </div>
 </section>
 
 <section>
 <h2>无线键鼠套装</h2>
 <div class="img-row">
-<img src="media/image13.png" alt="无线键鼠套装">
-<img src="media/image14.png" alt="无线键鼠套装">
-<img src="media/image15.png" alt="无线键鼠套装">
+<img src="media/image30.png" alt="产品图片">
+<img src="media/image29.png" alt="产品图片">
+<img src="media/image28.png" alt="产品图片">
+<img src="media/image27.png" alt="产品图片">
 </div>
 </section>
 
 <section>
 <h2>有线键鼠套装</h2>
 <div class="img-row">
-<img src="media/image16.png" alt="有线键鼠套装">
-<img src="media/image17.png" alt="有线键鼠套装">
-<img src="media/image18.png" alt="有线键鼠套装">
+<img src="media/image33.png" alt="产品图片">
+<img src="media/image32.png" alt="产品图片">
+<img src="media/image31.png" alt="产品图片">
 </div>
 </section>
 
 <section>
 <h2>机械键盘</h2>
 <div class="img-row">
-<img src="media/image19.png" alt="机械键盘">
-<img src="media/image20.png" alt="机械键盘">
-<img src="media/image21.png" alt="机械键盘">
+<img src="media/image36.png" alt="产品图片">
+<img src="media/image35.png" alt="产品图片">
+<img src="media/image34.png" alt="产品图片">
 </div>
 </section>
 
+<section>
+<h2>一体机</h2>
+<table class="spec-table">
+<tr><th>配置项</th><th>参数</th></tr>
+<tr class="frag-item"><td>处理器</td><td>I7-13620H 十核十六线程 2.4GHz / I5-14400 十核十六线程 2.5GHz</td></tr>
+<tr class="frag-item"><td>内存</td><td>16G（最大支持32G DDR4 3200）</td></tr>
+<tr class="frag-item"><td>硬盘</td><td>512G（双硬盘位：M.2 + 2.5寸）</td></tr>
+<tr class="frag-item"><td>接口</td><td>USB3.0×4 / USB2.0×2 / HDMI / COM / TYPE-C / RJ45</td></tr>
+</table>
+<div class="img-row">
+<img src="media/image38.png" alt="产品图片">
+<img src="media/image37.png" alt="产品图片">
 </div>
+</section>
+
+<section>
+<h2>一体机</h2>
+<div class="img-row">
+<img src="media/image41.png" alt="产品图片">
+<img src="media/image40.png" alt="产品图片">
+<img src="media/image39.png" alt="产品图片">
+</div>
+</section>
+
+<section>
+<h2>一体机</h2>
+<div class="img-row">
+<img src="media/image44.png" alt="产品图片">
+<img src="media/image43.png" alt="产品图片">
+<img src="media/image42.png" alt="产品图片">
+</div>
+</section>
+
+<section>
+<h2>一体机</h2>
+<div class="img-row">
+<img src="media/image48.png" alt="产品图片">
+<img src="media/image47.png" alt="产品图片">
+<img src="media/image46.png" alt="产品图片">
+<img src="media/image45.png" alt="产品图片">
+</div>
+</section>
+
+<section>
+<h2>显示器</h2>
+<div class="img-row">
+<img src="media/image50.png" alt="产品图片">
+<img src="media/image49.png" alt="产品图片">
+</div>
+</section>
+
+<section>
+<img src="media/image51.jpeg" alt="产品图片">
+</section>
+
+
 <div class="footer-hint">浪潮产品讲解 · reveal.js</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.min.js"></script>
@@ -176,13 +268,15 @@ Reveal.initialize({
     margin: 0.06,
     transition: 'fade',
     transitionSpeed: 'slow',
-    backgroundTransition: 'fade',
+    backgroundTransition: 'zoom',
     controls: true,
     progress: true,
     center: false,
-    controlsTutorial: true,
+    controlsTutorial: false,
     overview: true,
-    plugins: []
+    embedded: false,
+    keyboard: true,
+    touch: true
 });
 </script>
 </body>
