@@ -5,279 +5,590 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>浪潮产品讲解</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/theme/black.min.css">
 <style>
-.reveal { font-family: "Microsoft YaHei", "SimHei", Arial, sans-serif; }
-.reveal { background: #0d1117; }
-.reveal h1, .reveal h2, .reveal h3 { color: #58a6ff; font-weight: bold; letter-spacing: -0.02em; }
-.reveal h1 { font-size: 2.8em; text-shadow: 0 0 30px rgba(88,166,255,0.4); }
-.reveal h2 { font-size: 1.7em; color: #58a6ff; border-bottom: 2px solid rgba(88,166,255,0.5); padding-bottom: 0.3em; margin-bottom: 0.7em; }
-.reveal h3 { font-size: 1.1em; color: #c9d1d9; }
-.reveal p, .reveal li { color: #c9d1d9; font-size: 0.9em; line-height: 1.7; }
-.reveal .toc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8em; text-align: left; margin-top: 0.8em; }
-.reveal .toc-item { background: rgba(88,166,255,0.08); border: 1px solid rgba(88,166,255,0.2); border-radius: 10px; padding: 0.8em 1em; cursor: pointer; transition: all 0.3s; }
-.reveal .toc-item:hover { background: rgba(88,166,255,0.18); border-color: #58a6ff; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(88,166,255,0.2); }
-.reveal .toc-item h3 { color: #58a6ff; margin: 0 0 0.2em 0; font-size: 0.95em; }
-.reveal .toc-item p { color: #8b949e; font-size: 0.7em; margin: 0; }
-.reveal img { max-width: 100%; max-height: 50vh; object-fit: contain; border-radius: 8px; box-shadow: 0 8px 40px rgba(0,0,0,0.6); border: 1px solid rgba(88,166,255,0.1); }
-.reveal .img-row { display: flex; gap: 0.6em; justify-content: center; flex-wrap: wrap; align-items: center; }
-.reveal .img-row img { max-height: 50vh; flex: 1 1 40%; }
-.reveal .spec-table { width: 100%; border-collapse: collapse; margin: 0.5em 0; font-size: 0.75em; }
-.reveal .spec-table th { background: rgba(88,166,255,0.15); color: #58a6ff; padding: 7px 12px; text-align: left; border: 1px solid rgba(88,166,255,0.25); font-weight: bold; }
-.reveal .spec-table td { color: #c9d1d9; padding: 5px 12px; border: 1px solid rgba(255,255,255,0.07); }
-.reveal .spec-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
-.reveal .title-slide h1 { font-size: 3em; color: #58a6ff; text-shadow: 0 0 50px rgba(88,166,255,0.5); }
-.reveal .title-slide p { color: #8b949e; font-size: 1.1em; margin-top: 0.5em; }
-.reveal .footer-hint { position: fixed; bottom: 15px; right: 20px; color: rgba(255,255,255,0.15); font-size: 0.5em; pointer-events: none; }
-.reveal .present .frag-item { animation: slideUp 0.5s ease forwards; }
-@keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-.reveal .present .frag-item:nth-child(1) { animation-delay: 0.1s; }
-.reveal .present .frag-item:nth-child(2) { animation-delay: 0.2s; }
-.reveal .present .frag-item:nth-child(3) { animation-delay: 0.3s; }
-.reveal .present .frag-item:nth-child(4) { animation-delay: 0.4s; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Microsoft YaHei", "SimHei", Arial, sans-serif; background: #0d1117; color: #c9d1d9; overflow: hidden; }
+.presentation { width: 100vw; height: 100vh; display: flex; flex-direction: column; }
+/* 顶部标题 */
+.header { text-align: center; padding: 20px 20px 10px; background: linear-gradient(180deg, rgba(13,17,23,1) 0%, rgba(13,17,23,0.9) 100%); position: relative; z-index: 10; }
+.header h1 { font-size: 2em; color: #58a6ff; text-shadow: 0 0 40px rgba(88,166,255,0.5); letter-spacing: -0.02em; margin-bottom: 5px; }
+.header p { color: #8b949e; font-size: 0.9em; }
+/* ========== 目录导航 ========== */
+.toc-container { position: relative; z-index: 10; background: rgba(13,17,23,0.98); border-bottom: 2px solid rgba(88,166,255,0.2); }
+.toc-nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; padding: 10px 20px; position: relative; }
+.toc-link { 
+  background: rgba(88,166,255,0.06); border: 1px solid rgba(88,166,255,0.15); 
+  border-radius: 8px; padding: 8px 16px; cursor: pointer; 
+  color: #8b949e; font-size: 0.82em; font-weight: bold;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+  position: relative; overflow: hidden;
+  white-space: nowrap; text-decoration: none;
+}
+/* 悬停提示 */
+.toc-link::before { content: attr(data-tip); position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%) scale(0.8); background: rgba(88,166,255,0.95); color: #0d1117; padding: 6px 12px; border-radius: 6px; font-size: 0.7em; font-weight: normal; opacity: 0; pointer-events: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); white-space: nowrap; z-index: 100; box-shadow: 0 4px 20px rgba(88,166,255,0.4); }
+.toc-link::after { content: ''; position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%) scale(0.8); border: 6px solid transparent; border-top-color: rgba(88,166,255,0.95); opacity: 0; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 100; }
+.toc-link:hover::before, .toc-link:hover::after { opacity: 1; transform: translateX(-50%) scale(1); }
+.toc-link:hover { background: rgba(88,166,255,0.12); border-color: rgba(88,166,255,0.4); color: #58a6ff; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(88,166,255,0.15); }
+.toc-link.active { background: linear-gradient(135deg, rgba(88,166,255,0.2) 0%, rgba(88,166,255,0.08) 100%); border-color: #58a6ff; color: #58a6ff; box-shadow: 0 0 25px rgba(88,166,255,0.25), inset 0 0 15px rgba(88,166,255,0.1); }
+.toc-link.active::before, .toc-link.active::after { display: none; }
+/* 目录装饰线 */
+.toc-nav::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(88,166,255,0.5), transparent); opacity: 0; transition: opacity 0.3s; }
+.toc-nav:hover::after { opacity: 1; }
+/* ========== 内容区域 ========== */
+.content-area { flex: 1; position: relative; overflow: hidden; perspective: 1200px; }
+.tab-content { position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding: 20px 30px; opacity: 0; visibility: hidden; transform: rotateX(8deg) scale(0.95) translateY(20px); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); transform-origin: center bottom; overflow-y: auto; }
+.tab-content.active { opacity: 1; visibility: visible; transform: rotateX(0) scale(1) translateY(0); }
+.tab-content.exit-left { opacity: 0; transform: rotateY(-15deg) scale(0.9) translateX(-50px); }
+.tab-content.exit-right { opacity: 0; transform: rotateY(15deg) scale(0.9) translateX(50px); }
+/* ========== 子选项卡（多页面内容） ========== */
+.sub-tabs-container { background: rgba(88,166,255,0.05); border: 1px solid rgba(88,166,255,0.15); border-radius: 10px; margin: 15px 0; overflow: hidden; }
+.sub-tabs-header { display: flex; background: rgba(88,166,255,0.08); border-bottom: 1px solid rgba(88,166,255,0.1); }
+.sub-tab-btn { flex: 1; padding: 10px 15px; background: transparent; border: none; border-right: 1px solid rgba(88,166,255,0.1); color: #8b949e; font-size: 0.8em; cursor: pointer; transition: all 0.3s ease; position: relative; }
+.sub-tab-btn:last-child { border-right: none; }
+.sub-tab-btn::before { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: #58a6ff; transform: scaleX(0); transition: transform 0.3s ease; }
+.sub-tab-btn:hover { background: rgba(88,166,255,0.1); color: #c9d1d9; }
+.sub-tab-btn.active { background: rgba(88,166,255,0.15); color: #58a6ff; }
+.sub-tab-btn.active::before { transform: scaleX(1); }
+.sub-tab-content { display: none; padding: 15px; }
+.sub-tab-content.active { display: block; animation: fadeSlideUp 0.4s ease forwards; }
+/* 内容样式 */
+.content-inner { max-width: 1200px; margin: 0 auto; }
+.content-inner h2 { color: #58a6ff; font-size: 1.5em; border-bottom: 2px solid rgba(88,166,255,0.4); padding-bottom: 0.35em; margin-bottom: 0.8em; text-shadow: 0 0 20px rgba(88,166,255,0.3); animation: fadeSlideUp 0.6s ease forwards; }
+.content-inner h3 { color: #c9d1d9; font-size: 1em; margin: 0.8em 0 0.4em; animation: fadeSlideUp 0.6s ease forwards; }
+.content-inner p, .content-inner li { color: #c9d1d9; font-size: 0.88em; line-height: 1.7; animation: fadeSlideUp 0.6s ease forwards; }
+.content-inner ul { margin-left: 1.5em; animation: fadeSlideUp 0.6s ease forwards; animation-delay: 0.1s; opacity: 0; }
+.content-inner li { margin-bottom: 0.3em; }
+@keyframes fadeSlideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+/* 图片 */
+.img-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; align-items: center; margin: 15px 0; }
+.img-row img, .content-inner img:not(.img-row img) { max-width: 100%; max-height: 45vh; object-fit: contain; border-radius: 10px; box-shadow: 0 8px 40px rgba(0,0,0,0.6); border: 1px solid rgba(88,166,255,0.1); animation: fadeSlideUp 0.6s ease forwards; }
+.img-row img { max-height: 38vh; flex: 1 1 38%; animation: fadeSlideUp 0.6s ease forwards; }
+.img-row img:nth-child(1) { animation-delay: 0.1s; }
+.img-row img:nth-child(2) { animation-delay: 0.2s; }
+.img-row img:nth-child(3) { animation-delay: 0.3s; }
+.img-row img:nth-child(4) { animation-delay: 0.4s; }
+/* 规格表格 */
+.spec-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.8em; animation: fadeSlideUp 0.6s ease forwards; animation-delay: 0.2s; opacity: 0; }
+.spec-table th { background: rgba(88,166,255,0.15); color: #58a6ff; padding: 10px 15px; text-align: left; border: 1px solid rgba(88,166,255,0.3); font-weight: bold; border-radius: 6px 6px 0 0; }
+.spec-table td { color: #c9d1d9; padding: 8px 15px; border: 1px solid rgba(255,255,255,0.07); }
+.spec-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+.spec-table tr:last-child td { border-radius: 0 0 6px 6px; }
+/* 3D悬浮卡片效果 */
+.card-3d { background: rgba(88,166,255,0.05); border: 1px solid rgba(88,166,255,0.15); border-radius: 12px; padding: 18px; margin: 12px 0; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); animation: fadeSlideUp 0.6s ease forwards; animation-delay: 0.2s; opacity: 0; }
+.card-3d:hover { background: rgba(88,166,255,0.1); border-color: rgba(88,166,255,0.35); transform: translateY(-4px) scale(1.01); box-shadow: 0 12px 35px rgba(88,166,255,0.15); }
+/* 粒子背景 */
+.particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden; }
+.particle { position: absolute; width: 3px; height: 3px; background: rgba(88,166,255,0.3); border-radius: 50%; animation: float 15s infinite; }
+@keyframes float { 0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; } }
+/* 进度指示 */
+.progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, #58a6ff, #00d4ff); z-index: 1000; transition: width 0.3s ease; box-shadow: 0 0 10px rgba(88,166,255,0.5); }
+/* 页脚 */
+.footer-hint { position: fixed; bottom: 12px; right: 20px; color: rgba(255,255,255,0.12); font-size: 0.65em; pointer-events: none; z-index: 5; }
+/* 响应式 */
+@media (max-width: 768px) {
+  .toc-link { padding: 6px 12px; font-size: 0.72em; }
+  .sub-tab-btn { padding: 8px 10px; font-size: 0.72em; }
+  .content-inner h2 { font-size: 1.3em; }
+  .img-row { flex-direction: column; }
+  .img-row img { max-height: 35vh; flex: 1 1 100%; }
+}
 </style>
 </head>
 <body>
-<div class="reveal">
-<div class="slides">
+<div class="progress-bar" id="progressBar"></div>
+<div class="particles" id="particles"></div>
 
-<section>
-<div class="title-slide">
-<h1>浪潮产品讲解</h1>
-<p>全系列产品介绍 · 2024</p>
+<div class="presentation">
+  <div class="header">
+    <h1>浪潮产品讲解</h1>
+    <p>全系列产品介绍 · 2024</p>
+  </div>
+  
+  <!-- ========== 目录导航 ========== -->
+  <div class="toc-container">
+    <div class="toc-nav" id="tocNav">
+      <a class="toc-link active" data-tip="点击查看 miniPC 产品详情" href="#" data-tab="minipc">miniPC</a>
+      <a class="toc-link" data-tip="点击查看 商用一体机 产品详情" href="#" data-tab="yiti">一体机</a>
+      <a class="toc-link" data-tip="点击查看 全系列显示器 产品详情" href="#" data-tab="xianshi">显示器</a>
+      <a class="toc-link" data-tip="点击查看 键鼠外设 产品详情" href="#" data-tab="peijian">配件</a>
+      <a class="toc-link" data-tip="点击查看 F3 miniPC 产品详情" href="#" data-tab="f3">F3</a>
+      <a class="toc-link" data-tip="点击查看 A3 显示器 产品详情" href="#" data-tab="a3">A3</a>
+      <a class="toc-link" data-tip="点击查看 C01 显示器 产品详情" href="#" data-tab="c01">C01</a>
+      <a class="toc-link" data-tip="点击查看 AI智能鼠标 产品详情" href="#" data-tab="mouse">AI鼠标</a>
+      <a class="toc-link" data-tip="点击查看 无线键鼠套装 产品详情" href="#" data-tab="wireless">无线键鼠套装</a>
+      <a class="toc-link" data-tip="点击查看 有线键鼠套装 产品详情" href="#" data-tab="wired">有线键鼠套装</a>
+      <a class="toc-link" data-tip="点击查看 机械键盘 产品详情" href="#" data-tab="keyboard">机械键盘</a>
+    </div>
+  </div>
+
+  <div class="content-area">
+    <!-- miniPC -->
+    <div class="tab-content active" id="tab-minipc">
+      <div class="content-inner">
+        <h2>miniPC</h2>
+        <div class="card-3d">
+          <h3>产品特点</h3>
+          <ul>
+            <li>小型化设计，节省空间</li>
+            <li>高性能处理器配置</li>
+            <li>丰富接口扩展</li>
+            <li>低功耗环保</li>
+          </ul>
+        </div>
+        <div class="img-row">
+          <img src="media/image3.png" alt="miniPC产品图片">
+        </div>
+      </div>
+    </div>
+
+    <!-- 一体机 - 带子选项卡 -->
+    <div class="tab-content" id="tab-yiti">
+      <div class="content-inner">
+        <h2>一体机</h2>
+        <div class="card-3d">
+          <h3>产品规格</h3>
+          <table class="spec-table">
+            <tr><th>配置项</th><th>参数</th></tr>
+            <tr><td>处理器</td><td>I7-13620H 十核十六线程 2.4GHz / I5-14400 十核十六线程 2.5GHz</td></tr>
+            <tr><td>内存</td><td>16G（最大支持32G DDR4 3200）</td></tr>
+            <tr><td>硬盘</td><td>512G（双硬盘位：M.2 + 2.5寸）</td></tr>
+            <tr><td>接口</td><td>USB3.0×4 / USB2.0×2 / HDMI / COM / TYPE-C / RJ45</td></tr>
+          </table>
+        </div>
+        <!-- 子选项卡 -->
+        <div class="sub-tabs-container" data-for="yiti">
+          <div class="sub-tabs-header">
+            <button class="sub-tab-btn active" data-subtab="yiti-p1">外观展示</button>
+            <button class="sub-tab-btn" data-subtab="yiti-p2">细节特写</button>
+            <button class="sub-tab-btn" data-subtab="yiti-p3">多角度视图</button>
+          </div>
+          <div class="sub-tab-content active" id="sub-yiti-p1">
+            <div class="img-row">
+              <img src="media/image4.png" alt="一体机产品图片">
+              <img src="media/image37.png" alt="一体机产品图片">
+              <img src="media/image38.png" alt="一体机产品图片">
+            </div>
+          </div>
+          <div class="sub-tab-content" id="sub-yiti-p2">
+            <div class="img-row">
+              <img src="media/image39.png" alt="一体机产品图片">
+              <img src="media/image40.png" alt="一体机产品图片">
+              <img src="media/image41.png" alt="一体机产品图片">
+            </div>
+          </div>
+          <div class="sub-tab-content" id="sub-yiti-p3">
+            <div class="img-row">
+              <img src="media/image42.png" alt="一体机产品图片">
+              <img src="media/image43.png" alt="一体机产品图片">
+              <img src="media/image44.png" alt="一体机产品图片">
+            </div>
+            <div class="img-row">
+              <img src="media/image45.png" alt="一体机产品图片">
+              <img src="media/image46.png" alt="一体机产品图片">
+              <img src="media/image47.png" alt="一体机产品图片">
+              <img src="media/image48.png" alt="一体机产品图片">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 显示器 -->
+    <div class="tab-content" id="tab-xianshi">
+      <div class="content-inner">
+        <h2>显示器</h2>
+        <div class="card-3d">
+          <h3>产品系列</h3>
+          <ul>
+            <li>A3系列 - 商用办公显示器</li>
+            <li>C01系列 - 高端专业显示器</li>
+            <li>全系列尺寸可选</li>
+            <li>高清IPS面板</li>
+          </ul>
+        </div>
+        <!-- 子选项卡 -->
+        <div class="sub-tabs-container" data-for="xianshi">
+          <div class="sub-tabs-header">
+            <button class="sub-tab-btn active" data-subtab="xianshi-p1">产品概览</button>
+            <button class="sub-tab-btn" data-subtab="xianshi-p2">更多型号</button>
+            <button class="sub-tab-btn" data-subtab="xianshi-p3">应用场景</button>
+          </div>
+          <div class="sub-tab-content active" id="sub-xianshi-p1">
+            <div class="img-row">
+              <img src="media/image5.png" alt="显示器产品图片">
+            </div>
+          </div>
+          <div class="sub-tab-content" id="sub-xianshi-p2">
+            <div class="img-row">
+              <img src="media/image49.png" alt="显示器产品图片">
+              <img src="media/image50.png" alt="显示器产品图片">
+            </div>
+          </div>
+          <div class="sub-tab-content" id="sub-xianshi-p3">
+            <div class="img-row">
+              <img src="media/image51.jpeg" alt="显示器产品图片">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 配件 -->
+    <div class="tab-content" id="tab-peijian">
+      <div class="content-inner">
+        <h2>配件</h2>
+        <div class="card-3d">
+          <h3>键鼠外设</h3>
+          <ul>
+            <li>AI智能鼠标 - 支持语音输入、智能翻译</li>
+            <li>无线键鼠套装 - 简约办公首选</li>
+            <li>有线键鼠套装 - 稳定可靠</li>
+            <li>机械键盘 - 游戏办公两相宜</li>
+          </ul>
+        </div>
+        <div class="img-row">
+          <img src="media/image6.png" alt="配件产品图片">
+        </div>
+      </div>
+    </div>
+
+    <!-- F3 - 带子选项卡 -->
+    <div class="tab-content" id="tab-f3">
+      <div class="content-inner">
+        <h2>F3</h2>
+        <div class="card-3d">
+          <h3>miniPC产品系列</h3>
+          <p>F3系列是浪潮推出的高性能miniPC产品，采用紧凑型设计，适合商务办公和家庭使用场景。</p>
+        </div>
+        <!-- 子选项卡 -->
+        <div class="sub-tabs-container" data-for="f3">
+          <div class="sub-tabs-header">
+            <button class="sub-tab-btn active" data-subtab="f3-p1">产品外观</button>
+            <button class="sub-tab-btn" data-subtab="f3-p2">接口展示</button>
+            <button class="sub-tab-btn" data-subtab="f3-p3">细节特写</button>
+          </div>
+          <div class="sub-tab-content active" id="sub-f3-p1">
+            <div class="img-row">
+              <img src="media/image8.png" alt="F3产品图片">
+              <img src="media/image7.png" alt="F3产品图片">
+            </div>
+          </div>
+          <div class="sub-tab-content" id="sub-f3-p2">
+            <div class="img-row">
+              <img src="media/image10.png" alt="F3产品图片">
+              <img src="media/image9.png" alt="F3产品图片">
+            </div>
+          </div>
+          <div class="sub-tab-content" id="sub-f3-p3">
+            <div class="img-row">
+              <img src="media/image12.png" alt="F3产品图片">
+              <img src="media/image11.png" alt="F3产品图片">
+            </div>
+            <div class="img-row">
+              <img src="media/image13.png" alt="F3产品图片">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A3 - 带子选项卡 -->
+    <div class="tab-content" id="tab-a3">
+      <div class="content-inner">
+        <h2>A3</h2>
+        <div class="card-3d">
+          <h3>商用显示器系列</h3>
+          <p>A3系列商用显示器，专为企业办公场景设计，提供清晰的画质和舒适的观看体验。</p>
+        </div>
+        <!-- 子选项卡 -->
+        <div class="sub-tabs-container" data-for="a3">
+          <div class="sub-tabs-header">
+            <button class="sub-tab-btn active" data-subtab="a3-p1">正面视图</button>
+            <button class="sub-tab-btn" data-subtab="a3-p2">侧面视图</button>
+          </div>
+          <div class="sub-tab-content active" id="sub-a3-p1">
+            <div class="img-row">
+              <img src="media/image15.png" alt="A3产品图片">
+              <img src="media/image14.png" alt="A3产品图片">
+            </div>
+          </div>
+          <div class="sub-tab-content" id="sub-a3-p2">
+            <div class="img-row">
+              <img src="media/image17.png" alt="A3产品图片">
+              <img src="media/image16.png" alt="A3产品图片">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- C01 - 带子选项卡 -->
+    <div class="tab-content" id="tab-c01">
+      <div class="content-inner">
+        <h2>C01</h2>
+        <div class="card-3d">
+          <h3>高端专业显示器</h3>
+          <p>C01系列专业显示器，面向对画质有较高要求的用户群体，支持广色域和精准色彩显示。</p>
+        </div>
+        <!-- 子选项卡 -->
+        <div class="sub-tabs-container" data-for="c01">
+          <div class="sub-tabs-header">
+            <button class="sub-tab-btn active" data-subtab="c01-p1">正面视图</button>
+            <button class="sub-tab-btn" data-subtab="c01-p2">侧面视图</button>
+          </div>
+          <div class="sub-tab-content active" id="sub-c01-p1">
+            <div class="img-row">
+              <img src="media/image19.png" alt="C01产品图片">
+              <img src="media/image18.png" alt="C01产品图片">
+            </div>
+          </div>
+          <div class="sub-tab-content" id="sub-c01-p2">
+            <div class="img-row">
+              <img src="media/image21.png" alt="C01产品图片">
+              <img src="media/image20.png" alt="C01产品图片">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI鼠标 - 带子选项卡 -->
+    <div class="tab-content" id="tab-mouse">
+      <div class="content-inner">
+        <h2>AI鼠标</h2>
+        <div class="card-3d">
+          <h3>智能功能</h3>
+          <ul>
+            <li>语音输入 - 解放双手，开口即输入</li>
+            <li>智能翻译 - 实时多语言互译</li>
+            <li>语音助手 - 一键唤醒智能助手</li>
+            <li>静音设计 - 低噪音按键体验</li>
+          </ul>
+        </div>
+        <!-- 子选项卡 -->
+        <div class="sub-tabs-container" data-for="mouse">
+          <div class="sub-tabs-header">
+            <button class="sub-tab-btn active" data-subtab="mouse-p1">产品外观</button>
+            <button class="sub-tab-btn" data-subtab="mouse-p2">细节展示</button>
+            <button class="sub-tab-btn" data-subtab="mouse-p3">功能示意</button>
+          </div>
+          <div class="sub-tab-content active" id="sub-mouse-p1">
+            <div class="img-row">
+              <img src="media/image23.png" alt="AI鼠标产品图片">
+              <img src="media/image22.png" alt="AI鼠标产品图片">
+            </div>
+          </div>
+          <div class="sub-tab-content" id="sub-mouse-p2">
+            <div class="img-row">
+              <img src="media/image26.png" alt="AI鼠标产品图片">
+              <img src="media/image25.png" alt="AI鼠标产品图片">
+              <img src="media/image24.png" alt="AI鼠标产品图片">
+            </div>
+          </div>
+          <div class="sub-tab-content" id="sub-mouse-p3">
+            <div class="img-row">
+              <img src="media/image22.png" alt="AI鼠标产品图片">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 无线键鼠套装 -->
+    <div class="tab-content" id="tab-wireless">
+      <div class="content-inner">
+        <h2>无线键鼠套装</h2>
+        <div class="card-3d">
+          <h3>产品特点</h3>
+          <ul>
+            <li>2.4G无线连接，稳定可靠</li>
+            <li>即插即用，无需驱动</li>
+            <li>人体工学设计，舒适手感</li>
+            <li>长续航能力</li>
+          </ul>
+        </div>
+        <div class="img-row">
+          <img src="media/image30.png" alt="无线键鼠套装产品图片">
+          <img src="media/image29.png" alt="无线键鼠套装产品图片">
+          <img src="media/image28.png" alt="无线键鼠套装产品图片">
+          <img src="media/image27.png" alt="无线键鼠套装产品图片">
+        </div>
+      </div>
+    </div>
+
+    <!-- 有线键鼠套装 -->
+    <div class="tab-content" id="tab-wired">
+      <div class="content-inner">
+        <h2>有线键鼠套装</h2>
+        <div class="card-3d">
+          <h3>产品特点</h3>
+          <ul>
+            <li>稳定有线连接，零延迟</li>
+            <li>兼容性强，适用多系统</li>
+            <li>耐用可靠，经济实惠</li>
+            <li>防水防泼溅设计</li>
+          </ul>
+        </div>
+        <div class="img-row">
+          <img src="media/image33.png" alt="有线键鼠套装产品图片">
+          <img src="media/image32.png" alt="有线键鼠套装产品图片">
+          <img src="media/image31.png" alt="有线键鼠套装产品图片">
+        </div>
+      </div>
+    </div>
+
+    <!-- 机械键盘 - 带子选项卡 -->
+    <div class="tab-content" id="tab-keyboard">
+      <div class="content-inner">
+        <h2>机械键盘</h2>
+        <div class="card-3d">
+          <h3>产品特点</h3>
+          <ul>
+            <li>Cherry MX机械轴</li>
+            <li>多种轴体可选（红轴/茶轴/青轴）</li>
+            <li>RGB背光特效</li>
+            <li>全键无冲突</li>
+            <li>人体工学键帽曲线</li>
+          </ul>
+        </div>
+        <!-- 子选项卡 -->
+        <div class="sub-tabs-container" data-for="keyboard">
+          <div class="sub-tabs-header">
+            <button class="sub-tab-btn active" data-subtab="keyboard-p1">整体展示</button>
+            <button class="sub-tab-btn" data-subtab="keyboard-p2">轴体特写</button>
+            <button class="sub-tab-btn" data-subtab="keyboard-p3">灯光效果</button>
+          </div>
+          <div class="sub-tab-content active" id="sub-keyboard-p1">
+            <div class="img-row">
+              <img src="media/image36.png" alt="机械键盘产品图片">
+              <img src="media/image35.png" alt="机械键盘产品图片">
+            </div>
+          </div>
+          <div class="sub-tab-content" id="sub-keyboard-p2">
+            <div class="img-row">
+              <img src="media/image34.png" alt="机械键盘产品图片">
+            </div>
+          </div>
+          <div class="sub-tab-content" id="sub-keyboard-p3">
+            <div class="img-row">
+              <img src="media/image35.png" alt="机械键盘产品图片">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-</section>
 
-<section>
-<h2>目录</h2>
-<div class="toc-grid">
+<div class="footer-hint">浪潮产品讲解 · 目录导航版</div>
 
-<div class="toc-item" onclick="Reveal.slide(2)">
-<h3>miniPC</h3><p>小型台式机</p></div>
-<div class="toc-item" onclick="Reveal.slide(3)">
-<h3>一体机</h3><p>商用一体机</p></div>
-<div class="toc-item" onclick="Reveal.slide(4)">
-<h3>显示器</h3><p>全系列显示器</p></div>
-<div class="toc-item" onclick="Reveal.slide(5)">
-<h3>配件</h3><p>键鼠外设</p></div>
-<div class="toc-item" onclick="Reveal.slide(6)">
-<h3>F3</h3><p>miniPC产品</p></div>
-<div class="toc-item" onclick="Reveal.slide(7)">
-<h3>A3</h3><p>显示器产品</p></div>
-<div class="toc-item" onclick="Reveal.slide(8)">
-<h3>C01</h3><p>显示器产品</p></div>
-<div class="toc-item" onclick="Reveal.slide(9)">
-<h3>AI鼠标</h3><p>智能外设</p></div>
-<div class="toc-item" onclick="Reveal.slide(10)">
-<h3>无线键鼠套装</h3><p>无线键鼠</p></div>
-<div class="toc-item" onclick="Reveal.slide(11)">
-<h3>有线键鼠套装</h3><p>有线键鼠</p></div>
-<div class="toc-item" onclick="Reveal.slide(12)">
-<h3>机械键盘</h3><p>机械轴键盘</p></div>
-</div></section>
-<section>
-<h2>miniPC</h2>
-<img src="media/image3.png" alt="产品图片">
-</section>
-
-<section>
-<h2>一体机</h2>
-<img src="media/image4.png" alt="产品图片">
-</section>
-
-<section>
-<h2>显示器</h2>
-<img src="media/image5.png" alt="产品图片">
-</section>
-
-<section>
-<h2>配件</h2>
-<img src="media/image6.png" alt="产品图片">
-</section>
-
-<section>
-<h2>F3</h2>
-<div class="img-row">
-<img src="media/image8.png" alt="产品图片">
-<img src="media/image7.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>F3</h2>
-<div class="img-row">
-<img src="media/image10.png" alt="产品图片">
-<img src="media/image9.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>F3</h2>
-<div class="img-row">
-<img src="media/image12.png" alt="产品图片">
-<img src="media/image11.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<img src="media/image13.png" alt="产品图片">
-</section>
-
-<section>
-<h2>A3</h2>
-<div class="img-row">
-<img src="media/image15.png" alt="产品图片">
-<img src="media/image14.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>A3</h2>
-<div class="img-row">
-<img src="media/image17.png" alt="产品图片">
-<img src="media/image16.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>C01</h2>
-<div class="img-row">
-<img src="media/image19.png" alt="产品图片">
-<img src="media/image18.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>C01</h2>
-<div class="img-row">
-<img src="media/image21.png" alt="产品图片">
-<img src="media/image20.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>AI鼠标</h2>
-<div class="img-row">
-<img src="media/image23.png" alt="产品图片">
-<img src="media/image22.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>AI鼠标</h2>
-<div class="img-row">
-<img src="media/image26.png" alt="产品图片">
-<img src="media/image25.png" alt="产品图片">
-<img src="media/image24.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>无线键鼠套装</h2>
-<div class="img-row">
-<img src="media/image30.png" alt="产品图片">
-<img src="media/image29.png" alt="产品图片">
-<img src="media/image28.png" alt="产品图片">
-<img src="media/image27.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>有线键鼠套装</h2>
-<div class="img-row">
-<img src="media/image33.png" alt="产品图片">
-<img src="media/image32.png" alt="产品图片">
-<img src="media/image31.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>机械键盘</h2>
-<div class="img-row">
-<img src="media/image36.png" alt="产品图片">
-<img src="media/image35.png" alt="产品图片">
-<img src="media/image34.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>一体机</h2>
-<table class="spec-table">
-<tr><th>配置项</th><th>参数</th></tr>
-<tr class="frag-item"><td>处理器</td><td>I7-13620H 十核十六线程 2.4GHz / I5-14400 十核十六线程 2.5GHz</td></tr>
-<tr class="frag-item"><td>内存</td><td>16G（最大支持32G DDR4 3200）</td></tr>
-<tr class="frag-item"><td>硬盘</td><td>512G（双硬盘位：M.2 + 2.5寸）</td></tr>
-<tr class="frag-item"><td>接口</td><td>USB3.0×4 / USB2.0×2 / HDMI / COM / TYPE-C / RJ45</td></tr>
-</table>
-<div class="img-row">
-<img src="media/image38.png" alt="产品图片">
-<img src="media/image37.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>一体机</h2>
-<div class="img-row">
-<img src="media/image41.png" alt="产品图片">
-<img src="media/image40.png" alt="产品图片">
-<img src="media/image39.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>一体机</h2>
-<div class="img-row">
-<img src="media/image44.png" alt="产品图片">
-<img src="media/image43.png" alt="产品图片">
-<img src="media/image42.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>一体机</h2>
-<div class="img-row">
-<img src="media/image48.png" alt="产品图片">
-<img src="media/image47.png" alt="产品图片">
-<img src="media/image46.png" alt="产品图片">
-<img src="media/image45.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<h2>显示器</h2>
-<div class="img-row">
-<img src="media/image50.png" alt="产品图片">
-<img src="media/image49.png" alt="产品图片">
-</div>
-</section>
-
-<section>
-<img src="media/image51.jpeg" alt="产品图片">
-</section>
-
-
-<div class="footer-hint">浪潮产品讲解 · reveal.js</div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.min.js"></script>
 <script>
-Reveal.initialize({
-    hash: true,
-    slideNumber: 'c/t',
-    width: 1280,
-    height: 720,
-    margin: 0.06,
-    transition: 'fade',
-    transitionSpeed: 'slow',
-    backgroundTransition: 'zoom',
-    controls: true,
-    progress: true,
-    center: false,
-    controlsTutorial: false,
-    overview: true,
-    embedded: false,
-    keyboard: true,
-    touch: true
+// ========== 主选项卡切换 ==========
+const tocLinks = document.querySelectorAll('.toc-link');
+const tabContents = document.querySelectorAll('.tab-content');
+let currentTab = 'minipc';
+
+tocLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const tab = link.dataset.tab;
+    if (tab === currentTab) return;
+    
+    // 更新目录链接状态
+    tocLinks.forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+    
+    // 切换内容区
+    const currentContent = document.getElementById('tab-' + currentTab);
+    const newContent = document.getElementById('tab-' + tab);
+    
+    // 添加退出动画
+    currentContent.classList.remove('active');
+    currentContent.classList.add('exit-left');
+    
+    setTimeout(() => {
+      currentContent.classList.remove('exit-left');
+      currentContent.style.display = 'none';
+      
+      newContent.style.display = 'block';
+      newContent.classList.add('active');
+      
+      // 重置子选项卡
+      resetSubTabs(newContent);
+      
+      // 更新进度条
+      const index = Array.from(tocLinks).indexOf(link);
+      const progress = ((index + 1) / tocLinks.length) * 100;
+      document.getElementById('progressBar').style.width = progress + '%';
+      
+      // 触发动画重置
+      newContent.querySelectorAll('.content-inner > *, .img-row > *').forEach((el, i) => {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = null;
+      });
+    }, 200);
+    
+    currentTab = tab;
+  });
 });
+
+// ========== 子选项卡切换 ==========
+function resetSubTabs(container) {
+  const subTabContainers = container.querySelectorAll('.sub-tabs-container');
+  subTabContainers.forEach(container => {
+    const buttons = container.querySelectorAll('.sub-tab-btn');
+    const contents = container.querySelectorAll('.sub-tab-content');
+    buttons.forEach((btn, i) => {
+      btn.classList.toggle('active', i === 0);
+    });
+    contents.forEach((content, i) => {
+      content.classList.toggle('active', i === 0);
+    });
+  });
+}
+
+// 初始化子选项卡点击事件
+document.querySelectorAll('.sub-tabs-container').forEach(container => {
+  const buttons = container.querySelectorAll('.sub-tab-btn');
+  const contents = container.querySelectorAll('.sub-tab-content');
+  
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const subtab = btn.dataset.subtab;
+      
+      // 更新按钮状态
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // 切换内容
+      contents.forEach(content => {
+        content.classList.toggle('active', content.id === 'sub-' + subtab);
+      });
+    });
+  });
+});
+
+// ========== 粒子背景 ==========
+function createParticles() {
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 20; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.animationDuration = (10 + Math.random() * 20) + 's';
+    particle.style.animationDelay = Math.random() * 15 + 's';
+    particle.style.opacity = Math.random() * 0.5 + 0.1;
+    container.appendChild(particle);
+  }
+}
+createParticles();
+
+// 初始化进度条
+document.getElementById('progressBar').style.width = (1 / tocLinks.length * 100) + '%';
+
+// 初始化子选项卡
+resetSubTabs(document.getElementById('tab-' + currentTab));
 </script>
 </body>
 </html>
