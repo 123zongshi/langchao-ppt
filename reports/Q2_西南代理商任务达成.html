@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>西南代理商 Q2 任务达成报告</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 28px;
+        }
+        .header .subtitle {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        .summary-cards {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 200px;
+        }
+        .card .label {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .card .value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e3c72;
+        }
+        .card.highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .card.highlight .label {
+            color: rgba(255,255,255,0.8);
+        }
+        .card.highlight .value {
+            color: white;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        th {
+            background: #2a5298;
+            color: white;
+            padding: 15px 10px;
+            text-align: center;
+            font-weight: 500;
+        }
+        td {
+            padding: 12px 10px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .agent-name {
+            text-align: left !important;
+            font-weight: 500;
+        }
+        .province-tag {
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background-color: #e9ecef;
+            color: #495057;
+        }
+        .province-sichuan { background-color: #fff3cd; color: #856404; }
+        .province-chongqing { background-color: #d4edda; color: #155724; }
+        .province-yunnan { background-color: #cce5ff; color: #004085; }
+        .province-guizhou { background-color: #f8d7da; color: #721c24; }
+        .rate-high {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .rate-mid {
+            color: #fd7e14;
+            font-weight: bold;
+        }
+        .rate-low {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .sales {
+            text-align: right !important;
+            font-family: 'Consolas', monospace;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 西南代理商 Q2 任务达成报告</h1>
+        <div class="subtitle">生成时间: 2026-04-13 10:45:23 | 数据范围: 四川/重庆/云南/贵州 IT Mall 通路 (KV/M7/M8/1M/6J/M5)</div>
+    </div>
+    
+    <div class="summary-cards">
+        <div class="card">
+            <div class="label">Q2 总销售额</div>
+            <div class="value">¥ 42,784,730</div>
+        </div>
+        <div class="card">
+            <div class="label">Q2 总任务</div>
+            <div class="value">¥ 47,303,408</div>
+        </div>
+        <div class="card highlight">
+            <div class="label">Q2 整体达成率</div>
+            <div class="value">90.4%</div>
+        </div>
+        <div class="card">
+            <div class="label">2月 达成率</div>
+            <div class="value">127.2%</div>
+        </div>
+        <div class="card">
+            <div class="label">3月 达成率</div>
+            <div class="value">144.8%</div>
+        </div>
+        <div class="card">
+            <div class="label">4月 达成率</div>
+            <div class="value">26.5%</div>
+        </div>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>代理商</th>
+                <th>省份</th>
+                <th>2月销售额</th>
+                <th>2月达成率</th>
+                <th>3月销售额</th>
+                <th>3月达成率</th>
+                <th>4月销售额</th>
+                <th>4月达成率</th>
+                <th>Q2销售额</th>
+                <th>Q2达成率</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="agent-name">重庆淇杭科技有限公司</td>
+                <td><span class="province-tag province-chongqing">重庆市</span></td>
+                <td class="sales">¥ 1,562,537</td>
+                <td class="rate-high">147.2%</td>
+                <td class="sales">¥ 3,542,744</td>
+                <td class="rate-high">180.4%</td>
+                <td class="sales">¥ 1,272,712</td>
+                <td class="rate-low">55.8%</td>
+                <td class="sales">¥ 6,377,993</td>
+                <td class="rate-high">120.2%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">成都兴创戴华电脑科技有限公司</td>
+                <td><span class="province-tag province-sichuan">四川省</span></td>
+                <td class="sales">¥ 1,149,056</td>
+                <td class="rate-high">148.8%</td>
+                <td class="sales">¥ 4,072,030</td>
+                <td class="rate-high">285.1%</td>
+                <td class="sales">¥ 721,038</td>
+                <td class="rate-low">43.4%</td>
+                <td class="sales">¥ 5,942,124</td>
+                <td class="rate-high">153.9%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">成都鸿图勇创科技有限公司</td>
+                <td><span class="province-tag province-sichuan">四川省</span></td>
+                <td class="sales">¥ 924,803</td>
+                <td class="rate-high">121.4%</td>
+                <td class="sales">¥ 2,525,418</td>
+                <td class="rate-high">179.1%</td>
+                <td class="sales">¥ -6,904</td>
+                <td class="rate-low">-0.4%</td>
+                <td class="sales">¥ 3,443,318</td>
+                <td class="rate-mid">90.4%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">成都佳美和科技有限公司</td>
+                <td><span class="province-tag province-sichuan">四川省</span></td>
+                <td class="sales">¥ 1,004,344</td>
+                <td class="rate-high">111.8%</td>
+                <td class="sales">¥ 1,879,351</td>
+                <td class="rate-high">113.1%</td>
+                <td class="sales">¥ 312,839</td>
+                <td class="rate-low">16.2%</td>
+                <td class="sales">¥ 3,196,535</td>
+                <td class="rate-low">71.2%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">重庆庆端科技有限公司</td>
+                <td><span class="province-tag province-chongqing">重庆市</span></td>
+                <td class="sales">¥ 767,401</td>
+                <td class="rate-high">111.2%</td>
+                <td class="sales">¥ 1,669,340</td>
+                <td class="rate-high">130.8%</td>
+                <td class="sales">¥ 689,660</td>
+                <td class="rate-low">46.5%</td>
+                <td class="sales">¥ 3,126,401</td>
+                <td class="rate-mid">90.6%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">成都宏创智嘉科技有限公司</td>
+                <td><span class="province-tag province-sichuan">四川省</span></td>
+                <td class="sales">¥ 864,657</td>
+                <td class="rate-high">120.1%</td>
+                <td class="sales">¥ 1,466,104</td>
+                <td class="rate-high">110.1%</td>
+                <td class="sales">¥ 383,313</td>
+                <td class="rate-low">24.8%</td>
+                <td class="sales">¥ 2,714,074</td>
+                <td class="rate-low">75.4%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">成都易林汇科技有限公司</td>
+                <td><span class="province-tag province-sichuan">四川省</span></td>
+                <td class="sales">¥ 766,473</td>
+                <td class="rate-high">112.1%</td>
+                <td class="sales">¥ 1,507,921</td>
+                <td class="rate-high">119.2%</td>
+                <td class="sales">¥ 187,703</td>
+                <td class="rate-low">12.8%</td>
+                <td class="sales">¥ 2,462,098</td>
+                <td class="rate-low">72.0%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">重庆豪多环商贸有限公司</td>
+                <td><span class="province-tag province-chongqing">重庆市</span></td>
+                <td class="sales">¥ 622,817</td>
+                <td class="rate-high">134.8%</td>
+                <td class="sales">¥ 953,563</td>
+                <td class="rate-high">111.6%</td>
+                <td class="sales">¥ 653,245</td>
+                <td class="rate-low">65.8%</td>
+                <td class="sales">¥ 2,229,625</td>
+                <td class="rate-mid">96.5%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">成都炎想科技有限公司</td>
+                <td><span class="province-tag province-sichuan">四川省</span></td>
+                <td class="sales">¥ 446,829</td>
+                <td class="rate-high">111.7%</td>
+                <td class="sales">¥ 1,591,786</td>
+                <td class="rate-high">215.1%</td>
+                <td class="sales">¥ -33,512</td>
+                <td class="rate-low">-3.9%</td>
+                <td class="sales">¥ 2,005,104</td>
+                <td class="rate-high">100.3%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">云南首豪贸易有限公司</td>
+                <td><span class="province-tag province-yunnan">云南省</span></td>
+                <td class="sales">¥ 724,523</td>
+                <td class="rate-high">156.1%</td>
+                <td class="sales">¥ 934,495</td>
+                <td class="rate-high">108.9%</td>
+                <td class="sales">¥ 319,448</td>
+                <td class="rate-low">32.0%</td>
+                <td class="sales">¥ 1,978,465</td>
+                <td class="rate-mid">85.3%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">昆明海豪达商贸有限公司</td>
+                <td><span class="province-tag province-yunnan">云南省</span></td>
+                <td class="sales">¥ 598,870</td>
+                <td class="rate-high">130.3%</td>
+                <td class="sales">¥ 1,115,295</td>
+                <td class="rate-high">131.2%</td>
+                <td class="sales">¥ 126,394</td>
+                <td class="rate-low">12.8%</td>
+                <td class="sales">¥ 1,840,558</td>
+                <td class="rate-mid">80.1%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">云南亿文电子科技有限公司</td>
+                <td><span class="province-tag province-yunnan">云南省</span></td>
+                <td class="sales">¥ 337,224</td>
+                <td class="rate-low">74.1%</td>
+                <td class="sales">¥ 894,563</td>
+                <td class="rate-high">106.2%</td>
+                <td class="sales">¥ 128,405</td>
+                <td class="rate-low">13.1%</td>
+                <td class="sales">¥ 1,360,192</td>
+                <td class="rate-low">59.8%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">成都六进制科技有限公司</td>
+                <td><span class="province-tag province-sichuan">四川省</span></td>
+                <td class="sales">¥ 431,779</td>
+                <td class="rate-high">116.7%</td>
+                <td class="sales">¥ 804,275</td>
+                <td class="rate-high">117.5%</td>
+                <td class="sales">¥ 95,655</td>
+                <td class="rate-low">12.0%</td>
+                <td class="sales">¥ 1,331,709</td>
+                <td class="rate-low">72.0%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">贵阳志杰科技有限公司</td>
+                <td><span class="province-tag province-guizhou">贵州省</span></td>
+                <td class="sales">¥ 375,893</td>
+                <td class="rate-high">144.0%</td>
+                <td class="sales">¥ 585,883</td>
+                <td class="rate-high">121.3%</td>
+                <td class="sales">¥ 246,135</td>
+                <td class="rate-low">43.8%</td>
+                <td class="sales">¥ 1,207,911</td>
+                <td class="rate-mid">92.5%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">成都华仪科技有限公司</td>
+                <td><span class="province-tag province-sichuan">四川省</span></td>
+                <td class="sales">¥ 567,090</td>
+                <td class="rate-high">190.3%</td>
+                <td class="sales">¥ 555,170</td>
+                <td class="rate-high">100.7%</td>
+                <td class="sales">¥ 66,647</td>
+                <td class="rate-low">10.4%</td>
+                <td class="sales">¥ 1,188,907</td>
+                <td class="rate-low">79.8%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">云南创友科技有限公司</td>
+                <td><span class="province-tag province-yunnan">云南省</span></td>
+                <td class="sales">¥ 276,439</td>
+                <td class="rate-high">120.2%</td>
+                <td class="sales">¥ 93,508</td>
+                <td class="rate-low">22.0%</td>
+                <td class="sales">¥ 143,483</td>
+                <td class="rate-low">29.0%</td>
+                <td class="sales">¥ 513,430</td>
+                <td class="rate-low">44.6%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">贵州浩宇信诺科技有限公司</td>
+                <td><span class="province-tag province-guizhou">贵州省</span></td>
+                <td class="sales">¥ 51,865</td>
+                <td class="rate-mid">96.8%</td>
+                <td class="sales">¥ 375,587</td>
+                <td class="rate-high">378.7%</td>
+                <td class="sales">¥ 0</td>
+                <td class="rate-low">0.0%</td>
+                <td class="sales">¥ 427,452</td>
+                <td class="rate-high">159.5%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">云南能硕科技有限公司</td>
+                <td><span class="province-tag province-yunnan">云南省</span></td>
+                <td class="sales">¥ 174,852</td>
+                <td class="rate-high">194.3%</td>
+                <td class="sales">¥ 198,468</td>
+                <td class="rate-high">119.2%</td>
+                <td class="sales">¥ 13,337</td>
+                <td class="rate-low">6.9%</td>
+                <td class="sales">¥ 386,657</td>
+                <td class="rate-mid">85.9%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">成都惠诚至信科技有限公司</td>
+                <td><span class="province-tag province-sichuan">四川省</span></td>
+                <td class="sales">¥ 163,727</td>
+                <td class="rate-high">178.0%</td>
+                <td class="sales">¥ 201,988</td>
+                <td class="rate-high">118.7%</td>
+                <td class="sales">¥ 0</td>
+                <td class="rate-low">0.0%</td>
+                <td class="sales">¥ 365,715</td>
+                <td class="rate-low">79.5%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">绵阳市旭东科技有限公司</td>
+                <td><span class="province-tag province-sichuan">四川省</span></td>
+                <td class="sales">¥ 41,932</td>
+                <td class="rate-high">123.3%</td>
+                <td class="sales">¥ 130,142</td>
+                <td class="rate-high">206.9%</td>
+                <td class="sales">¥ 0</td>
+                <td class="rate-low">0.0%</td>
+                <td class="sales">¥ 172,074</td>
+                <td class="rate-high">101.2%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">四川生和昌科技有限公司</td>
+                <td><span class="province-tag province-sichuan">四川省</span></td>
+                <td class="sales">¥ 56,485</td>
+                <td class="rate-high">152.7%</td>
+                <td class="sales">¥ 90,611</td>
+                <td class="rate-high">132.4%</td>
+                <td class="sales">¥ 13,634</td>
+                <td class="rate-low">17.1%</td>
+                <td class="sales">¥ 160,730</td>
+                <td class="rate-mid">86.9%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">重庆格硕电子科技有限公司</td>
+                <td><span class="province-tag province-chongqing">重庆市</span></td>
+                <td class="sales">¥ 48,692</td>
+                <td class="rate-high">121.3%</td>
+                <td class="sales">¥ 54,306</td>
+                <td class="rate-low">73.1%</td>
+                <td class="sales">¥ 0</td>
+                <td class="rate-low">0.0%</td>
+                <td class="sales">¥ 102,998</td>
+                <td class="rate-low">51.3%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">贵州灵致科技有限公司</td>
+                <td><span class="province-tag province-guizhou">贵州省</span></td>
+                <td class="sales">¥ 0</td>
+                <td class="rate-low">0.0%</td>
+                <td class="sales">¥ 33,560</td>
+                <td class="rate-mid">82.5%</td>
+                <td class="sales">¥ 67,119</td>
+                <td class="rate-high">141.9%</td>
+                <td class="sales">¥ 100,679</td>
+                <td class="rate-mid">91.5%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">重庆达承科贸有限公司</td>
+                <td><span class="province-tag province-chongqing">重庆市</span></td>
+                <td class="sales">¥ 38,097</td>
+                <td class="rate-high">121.5%</td>
+                <td class="sales">¥ 58,451</td>
+                <td class="rate-high">100.7%</td>
+                <td class="sales">¥ 0</td>
+                <td class="rate-low">0.0%</td>
+                <td class="sales">¥ 96,548</td>
+                <td class="rate-low">61.6%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">贵州擎科时代科技有限公司</td>
+                <td><span class="province-tag province-guizhou">贵州省</span></td>
+                <td class="sales">¥ 37,918</td>
+                <td class="rate-high">172.4%</td>
+                <td class="sales">¥ 9,588</td>
+                <td class="rate-low">23.6%</td>
+                <td class="sales">¥ 0</td>
+                <td class="rate-low">0.0%</td>
+                <td class="sales">¥ 47,507</td>
+                <td class="rate-low">43.2%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">重庆市汇欧电脑科技有限公司</td>
+                <td><span class="province-tag province-chongqing">重庆市</span></td>
+                <td class="sales">¥ 0</td>
+                <td class="rate-low">0.0%</td>
+                <td class="sales">¥ 5,927</td>
+                <td class="rate-low">10.2%</td>
+                <td class="sales">¥ 0</td>
+                <td class="rate-low">0.0%</td>
+                <td class="sales">¥ 5,927</td>
+                <td class="rate-low">3.8%</td>
+            </tr>
+            <tr>
+                <td class="agent-name">芒市吉兴进出口有限公司</td>
+                <td><span class="province-tag province-yunnan">云南省</span></td>
+                <td class="sales">¥ 0</td>
+                <td class="rate-low">0.0%</td>
+                <td class="sales">¥ 0</td>
+                <td class="rate-low">0.0%</td>
+                <td class="sales">¥ 0</td>
+                <td class="rate-low">0.0%</td>
+                <td class="sales">¥ 0</td>
+                <td class="rate-low">0.0%</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="footer">
+        <p>达成率说明：<span class="rate-high">≥100% 达标</span> | <span class="rate-mid">80%-99% 基本达标</span> | <span class="rate-low"><80% 未达标</span></p>
+        <p>数据来源：HP PC Consumer MTD Data Manager Report | 仅统计 IT Mall 通路 | 省份：四川/重庆/云南/贵州</p>
+    </div>
+</body>
+</html>
