@@ -27,7 +27,7 @@ def parse_xml_message(xml_str):
         return None
 
 def get_excel_path():
-    paths = ['/tmp/report.xlsx', '/var/user/report.xlsx', 'data/report.xlsx']
+    paths = ['/tmp/report.xlsx', '/var/user/report.xlsx', 'src/report.xlsx', 'report.xlsx']
     for p in paths:
         if os.path.exists(p):
             return p
@@ -102,3 +102,7 @@ def wechat():
         return Response(xml, mimetype='application/xml')
 
 application = app
+
+if __name__ == '__main__':
+    from werkzeug.serving import run_simple
+    run_simple('0.0.0.0', 9000, app)
