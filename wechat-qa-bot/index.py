@@ -3,6 +3,7 @@ import os
 import time
 import hashlib
 import xml.etree.ElementTree as ET
+from urllib.parse import parse_qs
 
 WECHAT_TOKEN = os.environ.get('WECHAT_TOKEN', 'shangqiu2026')
 
@@ -74,13 +75,28 @@ def search_product(keyword):
         return f"查询出错: {str(e)}"
 
 def main_handler(event, context):
-    if event.get('httpMethod') == 'GET':
+    # Get HTTP method from various possible locations
+    http_method = event.get('httpMethod')
+    if not http_method:
+        headers = event.get('headers') or {}
+        http_method = headers.get('x-scf-request-method') or headers.get('method', '')
+    
+    # Parse query string
+    query_string = ''
+    path = event.get('path', '')
+    if '?' in path:
+        query_string = path.split('?')[1]
+    elif event.get('queryStringParameters'):
         params = event.get('queryStringParameters') or {}
-        if not params:
-            query_string = event.get('path', '').split('?')[1] if '?' in event.get('path', '') else ''
-            from urllib.parse import parse_qs
-            params = parse_qs(query_string) if query_string else {}
-            params = {k: v[0] if isinstance(v, list) else v for k, v in params.items()}
+        query_string = '&'.join([f'{k}={v}' for k, v in params.items()])
+    
+    if query_string:
+        parsed_qs = parse_qs(query_string)
+        params = {k: v[0] if isinstance(v, list) else v for k, v in parsed_qs.items()}
+    else:
+        params = {}
+    
+    if http_method == 'GET':
         signature = params.get('signature', '')
         timestamp = params.get('timestamp', '')
         nonce = params.get('nonce', '')
@@ -89,8 +105,11 @@ def main_handler(event, context):
             return {'statusCode': 200, 'headers': {'Content-Type': 'text/plain'}, 'body': echostr}
         else:
             return {'statusCode': 403, 'body': 'Signature verification failed'}
-    elif event.get('httpMethod') == 'POST':
-        msg_dict = parse_xml_message(event.get('body', ''))
+    elif http_method == 'POST':
+        body = event.get('body', '')
+        if isinstance(body, str):
+            body = body.encode('utf-8')
+        msg_dict = parse_xml_message(body.decode('utf-8') if isinstance(body, bytes) else body)
         if not msg_dict:
             return {'statusCode': 200, 'body': ''}
         from_user = msg_dict.get('FromUserName', '')
@@ -99,4 +118,4 @@ def main_handler(event, context):
         reply = search_product(content) if content else "请输入产品名称查询"
         xml = f"<xml><ToUserName><![CDATA[{from_user}]]></ToUserName><FromUserName><![CDATA[{to_user}]]></FromUserName><CreateTime>{int(time.time())}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{reply}]]></Content></xml>"
         return {'statusCode': 200, 'headers': {'Content-Type': 'application/xml'}, 'body': xml}
-    return {'statusCode': 400, 'body': 'Unsupported method'}
+    return {'statusCode': 400, 'body': f'Unsupported method: {http_method}'}
