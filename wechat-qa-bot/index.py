@@ -75,11 +75,10 @@ def search_product(keyword):
         return f"查询出错: {str(e)}"
 
 def main_handler(event, context):
-    # Get HTTP method
     http_method = event.get('httpMethod', 'GET')
-    
-    # Parse query string from path
     path = event.get('path', '/')
+    
+    # Parse query string
     query_string = ''
     if '?' in path:
         query_string = path.split('?')[1]
@@ -87,32 +86,27 @@ def main_handler(event, context):
         params = event.get('queryStringParameters') or {}
         query_string = '&'.join([f'{k}={v}' for k, v in params.items()])
     
+    params = {}
     if query_string:
-        parsed_qs = parse_qs(query_string)
-        params = {k: v[0] if isinstance(v, list) else v for k, v in parsed_qs.items()}
-    else:
-        params = {}
+        try:
+            parsed_qs = parse_qs(query_string)
+            params = {k: v[0] if isinstance(v, list) else v for k, v in parsed_qs.items()}
+        except:
+            pass
     
+    # Handle GET request (WeChat URL verification)
     if http_method == 'GET':
         echostr = params.get('echostr', '')
-        # For WeChat verification, just return echostr directly
         if echostr:
             return {'statusCode': 200, 'headers': {'Content-Type': 'text/plain'}, 'body': echostr}
-        # Also accept if signature/timestamp/nonce exist (for verification)
-        signature = params.get('signature', '')
-        timestamp = params.get('timestamp', '')
-        nonce = params.get('nonce', '')
-        if signature and timestamp and nonce:
-            if verify_signature(WECHAT_TOKEN, timestamp, nonce, signature):
-                return {'statusCode': 200, 'headers': {'Content-Type': 'text/plain'}, 'body': echostr}
-            else:
-                return {'statusCode': 200, 'headers': {'Content-Type': 'text/plain'}, 'body': echostr}
         return {'statusCode': 200, 'headers': {'Content-Type': 'text/plain'}, 'body': 'WeChat Bot is running!'}
+    
+    # Handle POST request (WeChat message)
     elif http_method == 'POST':
         body = event.get('body', '')
-        if isinstance(body, str):
-            body = body.encode('utf-8')
-        msg_dict = parse_xml_message(body.decode('utf-8') if isinstance(body, bytes) else body)
+        if isinstance(body, bytes):
+            body = body.decode('utf-8')
+        msg_dict = parse_xml_message(body)
         if not msg_dict:
             return {'statusCode': 200, 'body': ''}
         from_user = msg_dict.get('FromUserName', '')
@@ -121,4 +115,5 @@ def main_handler(event, context):
         reply = search_product(content) if content else "请输入产品名称查询"
         xml = f"<xml><ToUserName><![CDATA[{from_user}]]></ToUserName><FromUserName><![CDATA[{to_user}]]></FromUserName><CreateTime>{int(time.time())}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{reply}]]></Content></xml>"
         return {'statusCode': 200, 'headers': {'Content-Type': 'application/xml'}, 'body': xml}
-    return {'statusCode': 400, 'body': f'Unsupported method: {http_method}'}
+    
+    return {'statusCode': 400, 'body': 'Unsupported method'}
