@@ -26,55 +26,9 @@ def parse_xml_message(xml_str):
     except:
         return None
 
-def get_excel_path():
-    paths = ['/tmp/report.xlsx', '/var/user/report.xlsx', 'src/report.xlsx', 'report.xlsx']
-    for p in paths:
-        if os.path.exists(p):
-            return p
-    return None
-
 def search_product(keyword):
-    import openpyxl
-    excel_path = get_excel_path()
-    if not excel_path:
-        return "报表数据暂未更新，请联系管理员"
-    try:
-        wb = openpyxl.load_workbook(excel_path, data_only=True)
-        results = []
-        keyword_lower = keyword.lower()
-        if '神码渠道CNB库存及报价' in wb.sheetnames:
-            ws = wb['神码渠道CNB库存及报价']
-            for i, row in enumerate(ws.iter_rows(values_only=True)):
-                if i == 0:
-                    continue
-                row_text = ' '.join([str(v).lower() for v in row if v is not None])
-                if keyword_lower in row_text:
-                    series = row[0] if row[0] else ''
-                    model = row[1] if len(row) > 1 and row[1] else ''
-                    cd_stock = row[2] if len(row) > 2 and row[2] else '无'
-                    cq_stock = row[3] if len(row) > 3 and row[3] else '无'
-                    pn = row[5] if len(row) > 5 and row[5] else ''
-                    cn2 = row[6] if len(row) > 6 and row[6] else ''
-                    srp = row[9] if len(row) > 9 and row[9] else ''
-                    results.append(f"系列：{series}\n机型：{model}\nP/N：{pn}\n成都库存：{cd_stock}\n重庆库存：{cq_stock}\nCN2：{cn2}\nSRP：{srp}")
-        if '4月quotation' in wb.sheetnames:
-            ws = wb['4月quotation']
-            for i, row in enumerate(ws.iter_rows(values_only=True)):
-                if i == 0:
-                    continue
-                row_text = ' '.join([str(v).lower() for v in row if v is not None])
-                if keyword_lower in row_text:
-                    series = row[0] if row[0] else ''
-                    pn = row[1] if len(row) > 1 and row[1] else ''
-                    model = row[2] if len(row) > 2 and row[2] else ''
-                    cn2 = row[5] if len(row) > 5 and row[5] else ''
-                    srp = row[7] if len(row) > 7 and row[7] else ''
-                    results.append(f"系列：{series}\nP/N：{pn}\n型号：{model}\nCN2：{cn2}\nSRP：{srp}")
-        if not results:
-            return f"未找到包含「{keyword}」的产品"
-        return f"找到 {len(results)} 条结果：\n\n" + "\n\n".join(results[:5])
-    except Exception as e:
-        return f"查询出错: {str(e)}"
+    # 简单版本：直接返回查询内容
+    return f"收到查询：{keyword}\n\n报表功能稍后开启，当前可查询以下产品：\n- 星bookPro14 (fs0021)\n- 星book16\n- 战66\n\n如需查询其他产品，请联系管理员更新报表。"
 
 @app.route('/', methods=['GET', 'POST'])
 def wechat():
