@@ -76,6 +76,11 @@ def search_product(keyword):
 def main_handler(event, context):
     if event.get('httpMethod') == 'GET':
         params = event.get('queryStringParameters') or {}
+        if not params:
+            query_string = event.get('path', '').split('?')[1] if '?' in event.get('path', '') else ''
+            from urllib.parse import parse_qs
+            params = parse_qs(query_string) if query_string else {}
+            params = {k: v[0] if isinstance(v, list) else v for k, v in params.items()}
         signature = params.get('signature', '')
         timestamp = params.get('timestamp', '')
         nonce = params.get('nonce', '')
